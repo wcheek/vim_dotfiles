@@ -113,14 +113,25 @@ call plug#begin(g:plugged_home)
   "Plug 'kana/vim-textobj-line'
   "Plug 'GCBallesteros/vim-textobj-hydrogen'
   "Plug 'GCBallesteros/jupytext.vim'
-call plug#end()
+  Plug 'christoomey/vim-tmux-navigator'
+  call plug#end()
 
+" exit insert modewith jj 
 imap jj <Esc>
+" tmux navigator
+let g:tmux_navigator_no_mappings = 1
 
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <c-p> :TmuxNavigatePrevious<cr>
+let g:tmux_navigator_save_on_switch = 2
 " Yank to outside
 "vnoremap <C-c> "+y
 " Git
-nmap <F6> :vert Git<CR>
+"nmap <F6> :vert Git|20wincmd_<cr>
+nmap <F6> :30vsplit \| Gedit :<cr>
 " pydocstring
 let g:pydocstring_doq_path = '/home/wcheek/.local/share/virtualenvs/2022_Chatbot-JRxR2F_A/bin/doq'
 nmap <silent> <C-a> <Plug>(pydocstring)
@@ -142,7 +153,7 @@ let g:VM_maps = {}
 let g:VM_maps['Find Under']         = '<C-d>'           " replace C-n
 let g:VM_maps['Find Subword Under'] = '<C-d>'           " replace visual C-n
 " Open fzf buffers
-nnoremap <C-p> :<C-u>FZF<CR> 
+"nnoremap <C-p> :<C-u>FZF<CR> 
 nnoremap <silent> <C-b> :Buffers<CR>
 nnoremap <silent> <C-f> :Files<CR>
 nnoremap <silent> <Leader>f :Rg<CR>
@@ -150,6 +161,7 @@ nnoremap <silent> <Leader>f :Rg<CR>
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+autocmd BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
