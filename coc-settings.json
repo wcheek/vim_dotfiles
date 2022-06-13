@@ -1,7 +1,12 @@
 {
-  "coc.preferences.formatOnSaveFiletypes": ["py", "yaml", "json", "python"],
+  "coc.preferences.formatOnSaveFiletypes": ["py", "yaml", "json", "python", "javascript", "typescript", "typescriptreact", "json", "javascriptreact", "typescript.tsx", "html"],
   "python.linting.flake8Enabled": true,
   "python.linting.enabled": true,
   "python.formatting.provider": "black",
-  "python.formatting.blackArgs": ["--line-length=80"]
+  "python.formatting.blackArgs": ["--line-length=79"],
+  "pyright.organizeimports.provider": "isort",
+  "suggest.maxCompleteItemCount": 20,
+  "diagnostic.errorSign": "•",
+  "diagnostic.warningSign": "•",
+  "diagnostic.infoSign": "•"
 }

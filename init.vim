@@ -1,9 +1,10 @@
 " let g:python3_host_prog='~/.local/share/virtualenvs/nvim-neovim-G1pBjwa_/bin/python'
-"
 set langmenu=en_US.UTF-8
 syntax on
 syntax enable
 filetype plugin indent on
+"set title
+set completeopt
 set number
 set lazyredraw
 set relativenumber
@@ -59,6 +60,7 @@ call plug#begin(g:plugged_home)
   "Plug 'kien/ctrlp.vim'
   " Comment/Uncomment tool
   Plug 'scrooloose/nerdcommenter'
+  Plug 'ryanoasis/vim-devicons'
   " Switch to the begining and the end of a block by pressing %
   Plug 'tmhedberg/matchit'
   " A Tree-like side bar for better navigation
@@ -114,6 +116,9 @@ call plug#begin(g:plugged_home)
   "Plug 'GCBallesteros/vim-textobj-hydrogen'
   "Plug 'GCBallesteros/jupytext.vim'
   Plug 'christoomey/vim-tmux-navigator'
+  Plug 'mfussenegger/nvim-dap'
+  Plug 'nvim-telescope/telescope-dap.nvim'
+  Plug 'mfussenegger/nvim-dap-python'
   call plug#end()
 
 " exit insert modewith jj 
@@ -161,8 +166,8 @@ nnoremap <silent> <Leader>f :Rg<CR>
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" sort imports on save.
 autocmd BufWritePre *.py silent! :call CocAction('runCommand', 'python.sortImports')
-
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -178,11 +183,13 @@ let NERDTreeShowHidden=1
 map <M-q> <plug>NERDCommenterToggle
 
 " airline Configurations Part
-let g:airline_left_sep  = ''
-let g:airline_right_sep = ''
-let g:airline#extensions#ale#enabled = 1
-let airline#extensions#ale#error_symbol = 'E:'
-let airline#extensions#ale#warning_symbol = 'W:'
+"let g:airline_left_sep  = ''
+"let g:airline_right_sep = ''
+"let g:airline#extensions#ale#enabled = 1
+"let airline#extensions#ale#error_symbol = 'E:'
+"let airline#extensions#ale#warning_symbol = 'W:'
+let g:airline_powerline_fonts = 1
+"let g:airline#extensions#tabline#enabled = 1
 " Running python scripts
 autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
