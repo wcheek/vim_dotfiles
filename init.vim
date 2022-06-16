@@ -54,6 +54,10 @@ set mouse=a
 set noshowmode
 set smartcase " turn on smartcase
 
+" Insert new lines without entering insert mode
+nmap oo o<Esc>k
+nmap OO O<Esc>j
+
 let g:plugged_home = '~/.vim/plugged'
 call plug#begin(g:plugged_home)
   " A fuzzy file finder
@@ -119,7 +123,8 @@ call plug#begin(g:plugged_home)
   Plug 'mfussenegger/nvim-dap'
   Plug 'nvim-telescope/telescope-dap.nvim'
   Plug 'mfussenegger/nvim-dap-python'
-  call plug#end()
+  Plug 'lukas-reineke/indent-blankline.nvim'
+call plug#end()
 
 " exit insert modewith jj 
 imap jj <Esc>
@@ -215,12 +220,12 @@ set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+"if has("nvim-0.5.0") || has("patch-8.1.1564")
+  "" Recently vim can merge signcolumn and number column into one
+  "set signcolumn=number
+"else
+  "set signcolumn=yes
+"endif
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
